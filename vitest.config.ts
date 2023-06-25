@@ -1,4 +1,5 @@
-import path from 'path'
+import path from 'node:path'
+
 import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
@@ -6,5 +7,8 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src'),
     },
+  },
+  ssr: {
+    noExternal: ['@julian_cataldo/retext-case-police'],
   },
 })

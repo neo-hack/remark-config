@@ -22,6 +22,11 @@ import ruleStyle from 'remark-lint-rule-style'
 import spacesArrowNumber from 'remark-lint-spaces-around-number'
 import spacesAroundWord from 'remark-lint-spaces-around-word'
 import unOrderListStyle from 'remark-lint-unordered-list-marker-style'
+import text from 'remark-retext'
+import english from 'retext-english'
+import { unified } from 'unified'
+
+import retext from './text'
 
 import type { Preset } from 'unified'
 
@@ -39,6 +44,7 @@ const config: Required<Preset> = {
   },
   // plugins for lint markdown
   plugins: [
+    [text, unified().use(english).use(retext)],
     // recommended,
     commentConfig,
     hardBreakSpaces,

@@ -7,6 +7,7 @@ import { defineConfig } from 'rollup'
 import ce from 'rollup-plugin-condition-exports'
 import esbuild from 'rollup-plugin-esbuild'
 import size from 'rollup-plugin-filesize'
+import json from '@rollup/plugin-json'
 import { externals } from 'rollup-plugin-node-externals'
 
 export default defineConfig([
@@ -24,6 +25,7 @@ export default defineConfig([
        */
       externals({
         devDeps: false,
+        exclude: ['@julian_cataldo/retext-case-police'],
       }),
       commonjs(),
       esbuild({
@@ -39,6 +41,7 @@ export default defineConfig([
         })),
       }),
       resolve(),
+      json(),
       /**
        * Auto setup package.json
        * @see {@link https://github.com/JiangWeixian/rollup-plugin-condition-exports}
@@ -46,6 +49,9 @@ export default defineConfig([
       ce(),
       size(),
     ],
+    watch: {
+      exclude: ['package.json'],
+    },
     output: [
       { dir: 'dist', entryFileNames: '[name].cjs', format: 'cjs' },
       { dir: 'dist', entryFileNames: '[name].mjs', format: 'es' },
