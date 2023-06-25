@@ -1,6 +1,6 @@
 {
   "name": "@aiou/remark-config",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "packageManager": "pnpm@7.23.0",
   "license": "MIT",
   "engines": {
