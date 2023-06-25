@@ -22,6 +22,6 @@ async function main() {
 }
 
 test('basic', async () => {
-  const { input, output } = await main()
-  expect(input).toMatchInlineSnapshot(output)
+  const { input } = await main()
+  expect(input).toMatchSnapshot()
 })
