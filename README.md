@@ -30,6 +30,19 @@ add `lint:md` script in `package.json`
 }
 ```
 
+### `lint-staged`
+
+create `.lintstagedrc.mjs`
+
+```js
+export default {
+  // Lint Markdown files with remark
+  '**/**/*.md': filenames => [
+    `remark ${filenames.join(' ')} -o`,
+  ],
+}
+```
+
 ## install
 
 ```console
@@ -38,8 +51,8 @@ pnpm i @aiou/remark-config
 
 ## development
 
-*   **Setup** - `pnpm i`
-*   **Build** - `pnpm build`
+- **Setup** - `pnpm i`
+- **Build** - `pnpm build`
 
 #
 
