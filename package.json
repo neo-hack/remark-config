@@ -20,6 +20,7 @@
     "email": "jiangweixian1994@gmail.com",
     "url": "https://twitter.com/jiangweixian"
   },
+  "files": ["dist"],
   "exports": {
     "./package.json": "./package.json",
     ".": {
