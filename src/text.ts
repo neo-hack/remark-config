@@ -1,4 +1,4 @@
-import casePolice from '@julian_cataldo/retext-case-police'
+import casePolice from 'retext-case-police'
 import contractions from 'retext-contractions'
 import indefiniteArticle from 'retext-indefinite-article'
 import quotes from 'retext-quotes'
