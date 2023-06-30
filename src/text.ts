@@ -10,7 +10,7 @@ import type { Preset } from 'unified'
 const config: Preset = {
   plugins: [
     casePolice,
-    [sentenceSpacing, { preferred: 2 }],
+    [sentenceSpacing, { preferred: 1 }],
     repeatedWords,
     indefiniteArticle,
     [quotes, { smart: ['‘’', '“”', '""'] }],
