@@ -1,5 +1,11 @@
 # @aiou/remark-config
 
+## 0.1.2
+
+### Patch Changes
+
+- c166103: bundle retext-case-police, support node16
+
 ## 0.1.1
 
 ### Patch Changes
