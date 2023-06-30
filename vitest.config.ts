@@ -9,6 +9,6 @@ export default defineConfig({
     },
   },
   ssr: {
-    noExternal: ['@julian_cataldo/retext-case-police'],
+    noExternal: ['retext-case-police'],
   },
 })
