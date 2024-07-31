@@ -16,11 +16,15 @@ import noLiteralUrl from 'remark-lint-no-literal-urls'
 import noMissingBlackListLines from 'remark-lint-no-missing-blank-lines'
 import noMultipleTopLevelHeading from 'remark-lint-no-multiple-toplevel-headings'
 import noShellDollars from 'remark-lint-no-shell-dollars'
+import noTableIdent from 'remark-lint-no-table-indentation'
 import noTabs from 'remark-lint-no-tabs'
 import orderListStyle from 'remark-lint-ordered-list-marker-style'
 import ruleStyle from 'remark-lint-rule-style'
 import spacesArrowNumber from 'remark-lint-spaces-around-number'
 import spacesAroundWord from 'remark-lint-spaces-around-word'
+import tableCellPadding from 'remark-lint-table-cell-padding'
+import tablePipeAlignment from 'remark-lint-table-pipe-alignment'
+import tablePipes from 'remark-lint-table-pipes'
 import unOrderListStyle from 'remark-lint-unordered-list-marker-style'
 import text from 'remark-retext'
 import english from 'retext-english'
@@ -72,6 +76,10 @@ const config: Required<Preset> = {
     // No black lines between list item
     [noMissingBlackListLines, { exceptTightLists: true }],
     [listItemSpacing, { checkBlanks: true }],
+    noTableIdent,
+    [tableCellPadding, 'padded'],
+    tablePipeAlignment,
+    tablePipes,
     gfm,
     frontMatter,
   ],
