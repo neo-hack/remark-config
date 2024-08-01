@@ -1,5 +1,11 @@
 # @aiou/remark-config
 
+## 0.2.0
+
+### Minor Changes
+
+- 78e4d29: add table lint config
+
 ## 0.1.2
 
 ### Patch Changes
