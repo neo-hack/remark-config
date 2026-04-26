@@ -1,4 +1,7 @@
 import { generated } from 'unist-util-generated'
+// refs: https://github.com/laysent/remark-lint-plugins/tree/master/packages/remark-lint-spaces-around-word
+// Forked from remark-lint-spaces-around-word and updated for unified v11
+// Original author: LaySent (laysent@gmail.com)
 import { visit } from 'unist-util-visit'
 
 import type { Node } from 'unist'
