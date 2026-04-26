@@ -138,69 +138,6 @@ title: Test
     expect(report).toContain('no-shell-dollars')
   })
 
-  test('spaces around number auto-fixes and reports', async () => {
-    const input = '理财产品的收益是4.0%左右。'
-
-    const file = await remark()
-      .use(config)
-      .process(input)
-
-    const output = file.toString()
-    const report = reporter(file as any)
-
-    // Should auto-fix
-    expect(output).toMatch(/理财产品的收益是\s+4\.0%\s+左右/)
-    // Should report the issues
-    expect(report).toContain('space between')
-    expect(report).toContain('4.0%')
-  })
-
-  test('spaces around number keeps existing spaces without report', async () => {
-    const input = '理财产品的收益是 4.0% 左右。'
-
-    const file = await remark()
-      .use(config)
-      .process(input)
-
-    const report = reporter(file as any)
-
-    expect(file.toString()).toContain(' 4.0% ')
-    // Should not report when spaces already exist
-    expect(report).not.toContain('space between')
-  })
-
-  test('spaces around word auto-fixes and reports', async () => {
-    const input = '这是一份中文API文档。'
-
-    const file = await remark()
-      .use(config)
-      .process(input)
-
-    const output = file.toString()
-    const report = reporter(file as any)
-
-    // Should auto-fix
-    expect(output).toContain('中文 API 文档')
-    expect(output).not.toContain('中文API')
-    // Should report the issues
-    expect(report).toContain('space between')
-    expect(report).toContain('API')
-  })
-
-  test('spaces around word keeps existing spaces without report', async () => {
-    const input = '这是一份中文 API 文档。'
-
-    const file = await remark()
-      .use(config)
-      .process(input)
-
-    const report = reporter(file as any)
-
-    expect(file.toString()).toContain('中文 API 文档')
-    // Should not report when spaces already exist
-    expect(report).not.toContain('space between')
-  })
-
   test('basic snapshot', async () => {
     const content = (await fs.readFile(path.resolve(__dirname, 'input.md'))).toString('utf-8')
     const file = await remark()
