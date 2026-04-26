@@ -1,9 +1,18 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`basic 1`] = `
+exports[`remark config > basic snapshot 1`] = `
 "---
 outline: deep
 ---
 
 MACOS"
+`;
+
+exports[`remark config > basic snapshot 2`] = `
+"---
+outline: deep
+---
+
+MACOS
+"
 `;
