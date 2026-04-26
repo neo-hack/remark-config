@@ -28,6 +28,8 @@ import text from 'remark-retext'
 import english from 'retext-english'
 import { unified } from 'unified'
 
+import spacesAroundNumber from './plugins/spaces-around-number'
+import spacesAroundWord from './plugins/spaces-around-word'
 import retext from './text'
 
 import type { Preset } from 'unified'
@@ -61,6 +63,8 @@ const config: Preset = {
     noMultipleTopLevelHeading,
     noLiteralUrl,
     noTabs,
+    spacesAroundNumber,
+    spacesAroundWord,
     [unOrderListStyle, '-'],
     [ruleStyle, '---'],
     [orderListStyle, '.'],
