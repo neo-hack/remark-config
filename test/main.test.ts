@@ -138,50 +138,49 @@ title: Test
     expect(report).toContain('no-shell-dollars')
   })
 
-  test('spaces around number warns on missing space', async () => {
+  test('spaces around number auto-fixes missing space', async () => {
     const input = '理财产品的收益是4.0%左右。'
 
     const file = await remark()
       .use(config)
       .process(input)
 
-    const report = reporter(file as any)
-    expect(report).toContain('spaces-around-number')
-    expect(report).toContain('4.0%')
+    expect(file.toString()).toContain('4.0%')
+    // The space should be added around the number
+    const output = file.toString()
+    expect(output).toMatch(/理财产品的收益是\s+4\.0%\s+左右/)
   })
 
-  test('spaces around number passes with space', async () => {
+  test('spaces around number keeps existing spaces', async () => {
     const input = '理财产品的收益是 4.0% 左右。'
 
     const file = await remark()
       .use(config)
       .process(input)
 
-    const report = reporter(file as any)
-    expect(report).not.toContain('spaces-around-number')
+    expect(file.toString()).toContain(' 4.0% ')
   })
 
-  test('spaces around word warns on missing space', async () => {
+  test('spaces around word auto-fixes missing space', async () => {
     const input = '这是一份中文API文档。'
 
     const file = await remark()
       .use(config)
       .process(input)
 
-    const report = reporter(file as any)
-    expect(report).toContain('spaces-around-word')
-    expect(report).toContain('API')
+    const output = file.toString()
+    expect(output).toContain('中文 API 文档')
+    expect(output).not.toContain('中文API')
   })
 
-  test('spaces around word passes with space', async () => {
+  test('spaces around word keeps existing spaces', async () => {
     const input = '这是一份中文 API 文档。'
 
     const file = await remark()
       .use(config)
       .process(input)
 
-    const report = reporter(file as any)
-    expect(report).not.toContain('spaces-around-word')
+    expect(file.toString()).toContain('中文 API 文档')
   })
 
   test('basic snapshot', async () => {
