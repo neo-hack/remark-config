@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       branch:
-        description: '输入要发布 snapshot 的分支名称'
+        description: 'Enter the branch name for snapshot release'
         required: true
         default: 'main'
         type: string
