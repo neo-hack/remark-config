@@ -1,10 +1,17 @@
-name: Release
+name: Snapshot Release
+
 on:
-  push:
-    branches:
-      - snapshot
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Enter the branch name for snapshot release'
+        required: true
+        default: 'main'
+        type: string
+
 env:
   CI: true
+
 jobs:
   version:
     timeout-minutes: 15
@@ -15,23 +22,28 @@ jobs:
       pull-requests: write
     steps:
       - name: checkout code repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
+          ref: ${{ github.event.inputs.branch }}
           fetch-depth: 0
+
       - name: setup node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22
+
       - uses: pnpm/action-setup@v2
         name: Install pnpm
         id: pnpm-install
         with:
           run_install: false
+
       - name: get pnpm store directory
         id: pnpm-cache
         shell: bash
         run: |
           echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
       - uses: actions/cache@v3
         name: setup pnpm cache
         with:
@@ -39,8 +51,10 @@ jobs:
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
+
       - name: install dependencies
         run: pnpm install --frozen-lockfile=false
+
       - name: create and publish versions
         uses: changesets/action@v1
         with:

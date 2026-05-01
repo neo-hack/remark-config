@@ -20,8 +20,6 @@ import noTableIdent from 'remark-lint-no-table-indentation'
 import noTabs from 'remark-lint-no-tabs'
 import orderListStyle from 'remark-lint-ordered-list-marker-style'
 import ruleStyle from 'remark-lint-rule-style'
-import spacesArrowNumber from 'remark-lint-spaces-around-number'
-import spacesAroundWord from 'remark-lint-spaces-around-word'
 import tableCellPadding from 'remark-lint-table-cell-padding'
 import tablePipeAlignment from 'remark-lint-table-pipe-alignment'
 import tablePipes from 'remark-lint-table-pipes'
@@ -30,11 +28,13 @@ import text from 'remark-retext'
 import english from 'retext-english'
 import { unified } from 'unified'
 
+import spacesAroundNumber from './plugins/spaces-around-number'
+import spacesAroundWord from './plugins/spaces-around-word'
 import retext from './text'
 
 import type { Preset } from 'unified'
 
-const config: Required<Preset> = {
+const config: Preset = {
   // refs: https://github.com/remarkjs/remark-lint/tree/main#example-check-and-format-markdown-on-the-api
   // settings for format markdown
   settings: {
@@ -45,7 +45,7 @@ const config: Required<Preset> = {
     ruleSpaces: false,
     listItemIndent: 'one',
     tightDefinitions: true,
-  },
+  } as Preset['settings'],
   // plugins for lint markdown
   plugins: [
     [text, unified().use(english).use(retext)],
@@ -63,7 +63,7 @@ const config: Required<Preset> = {
     noMultipleTopLevelHeading,
     noLiteralUrl,
     noTabs,
-    spacesArrowNumber,
+    spacesAroundNumber,
     spacesAroundWord,
     [unOrderListStyle, '-'],
     [ruleStyle, '---'],
