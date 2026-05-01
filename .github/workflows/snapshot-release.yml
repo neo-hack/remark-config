@@ -56,12 +56,10 @@ jobs:
         run: pnpm install --frozen-lockfile=false
 
       - name: create and publish versions
-        uses: changesets/action@v1
-        with:
-          version: pnpm ci:snapshot
-          commit: "chore: update versions"
-          title: "chore: update versions"
-          publish: pnpm ci:prerelease
+        run: |
+          pnpm ci:snapshot
+          pnpm changeset pre enter snapshot
+          pnpm ci:prerelease
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
