@@ -4,14 +4,10 @@ on:
   workflow_dispatch:
     inputs:
       branch:
-        description: '选择要发布 snapshot 的分支'
+        description: '输入要发布 snapshot 的分支名称'
         required: true
         default: 'main'
-        type: choice
-        options:
-          - main
-          - snapshot
-          - upgrade-remark-v15
+        type: string
 
 env:
   CI: true
